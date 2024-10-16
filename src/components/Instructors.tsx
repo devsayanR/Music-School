@@ -1,6 +1,9 @@
+"use client"
+
 import React from 'react'
-import { WavyBackground } from './ui/wavy-background';
 import { AnimatedTooltip } from './ui/animated-tooltip';
+import { HeroHighlight, Highlight } from './ui/hero-highlight';
+import { motion } from "framer-motion"
 
 const Instructors = () => {
 
@@ -37,15 +40,24 @@ const Instructors = () => {
 
     return (
         <div className="relative h-[40rem] overflow-hidden flex items-center justify-center">
-            <WavyBackground className="w-full max-w-7xl mx-auto flex flex-col items-center justify-center h-full">
-                <h2 className="text-2xl md:text-4xl lg:text-7xl text-white font-bold text-center mb-8">Meet Our Instructors</h2>
-                <p className="text-base md:text-lg text-white text-center mb-4">Discover the talented professionals who will guide your musical journey</p>
-                <div className="flex flex-row items-center justify-center mb-10 w-full">
-                    <AnimatedTooltip items={instructors} />
-                </div>
-            </WavyBackground>
-        </div>
-    )
+            <HeroHighlight>
+                <motion.h1
+                    initial={{ opacity: 0, y: 20, }}
+                    animate={{ opacity: 1, y: [20, -5, 0], }}
+                    transition={{ duration: 0.5, ease: [0.4, 0.0, 0.2, 1], }}
+                    className="text-2xl px-4 md:text-4xl lg:text-5xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+                >
+                    <Highlight className='text-black dark:text-white text-2xl md:text-4xl lg:text-7xl px-8'>
+                        Meet Our Instructors
+                    </Highlight>
+                    <p className="text-base md:text-lg text-white text-center my-4 ">Discover the talented professionals who will guide your musical journey</p>
+                    <div className="flex flex-row items-center justify-center mb-10 w-full">
+                        <AnimatedTooltip items={instructors} />
+                    </div>
+                </motion.h1>
+            </HeroHighlight >
+        </div >
+    );
 }
 
 export default Instructors
